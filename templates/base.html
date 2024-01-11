@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>{%block title%}{%endblock%}</title>
+        <link rel="shortcut icon" href="{{ url_for('static', filename='img/logo1.ico') }}" type="ico">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css">
+        <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+      </head>
+<body class="bg-purple-800">
+    <br><br><br>
+
+    <!-- Navbar -->
+    <nav class="bg-blue-500 p-4 fixed top-0 left-0 w-full z-10">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="{{ url_for('inicio') }}" class="text-white font-bold text-lg"><img class="w-16" src="{{ url_for('static', filename='img/logo.jpeg')}}" alt=""></a>
+            <!-- Menú desplegable en pantallas pequeñas -->
+            <div class="lg:hidden">
+                <button id="menu-toggle" class="text-white focus:outline-none">
+                    <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                              d="M4 6h16M4 12h16m-7 6h7"></path>
+                    </svg>
+                </button>
+            </div>
+            <!-- Enlaces del Navbar -->
+            <div class="hidden lg:flex space-x-4">
+                <a href="{{ url_for('inicio') }}" class="text-white">Home</a>
+                <a href="{{ url_for('about') }}" class="text-white">About</a>
+                <a href="{{ url_for('feedback') }}" class="text-white">Feedback</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mx-auto mt-20">
+        {%block content%}{%endblock%}
+    </div>
+
+    <!-- Script para el menú desplegable en pantallas pequeñas -->
+    <script>
+        document.getElementById('menu-toggle').addEventListener('click', function () {
+            document.querySelector('.lg\\:flex').classList.toggle('hidden');
+        });
+    </script>
+
+</body>
+</html>
